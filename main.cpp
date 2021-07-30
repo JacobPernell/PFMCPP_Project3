@@ -77,7 +77,7 @@ Thing 10)
 Thing 1) PlayStation 4
 5 properties:
     1) number of controllers
-    2) on/off button
+    2) type of display cable attached
     3) amount of electricity used per day
     4) number of usb ports
     5) amount of time on per week
