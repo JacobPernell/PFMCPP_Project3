@@ -56,19 +56,7 @@ Part1 will be broken up into 5 separate steps
     Move the Thing 10 pseudo-code to after your Thing1-4 in the project.
 */
 
-/*
-Thing 10)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
+
 
 
 
@@ -129,6 +117,19 @@ Thing 4) corgi
     3) play catch
  */
 
+/*
+Thing 10) VR headset
+5 properties:
+    1) External camera
+    2) Internal screen
+    3) Controllers
+    4) Memory
+    5) Head strap
+3 things it can do:
+    1) Play games
+    2) Scan room
+    3) Track head movement
+ */
 
 
 /*
