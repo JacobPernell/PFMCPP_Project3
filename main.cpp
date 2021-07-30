@@ -56,59 +56,59 @@ Thing: Car Wash
  */
 
 /*
-Thing 1)
+Thing 1) PlayStation 4
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of controllers
+    2) on/off button
+    3) amount of electricity used per day
+    4) number of usb ports
+    5) amount of time on per week
 3 things it can do:
-    1)
-    2)
-    3)
+    1) play games
+    2) watch Netflix shows
+    3) take in/eject a game disk
  */
 
 /*
-Thing 2)
+Thing 2) Macbook Pro laptop
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of keys
+    2) system language
+    3) size of screen
+    4) battery life remaining
+    5) number of usb ports
 3 things it can do:
-    1)
-    2)
-    3)
+    1) turn off/on
+    2) browse the internet
+    3) download apps
  */
 
 /*
-Thing 3)
+Thing 3) iPhone
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) size of screen
+    2) model number
+    3) number of call minutes used this month
+    4) time spent browsing instagram
+    5) number of side buttons
 3 things it can do:
-    1)
-    2)
-    3)
+    1) make calls
+    2) send texts
+    3) set a timer
  */
 
 /*
-Thing 4)
+Thing 4) corgi
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of legs
+    2) weight
+    3) average loudness of bark in dB
+    4) color of eyes
+    5) age
 3 things it can do:
-    1)
-    2)
-    3)
+    1) bark
+    2) beg for treats
+    3) play catch
  */
 
 
