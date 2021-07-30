@@ -69,75 +69,7 @@ Part1 will be broken up into 5 separate steps
         you will need to provide 5 properties and 3 member functions of that Engine object in plain English
 */
 
-/*
-Thing 5)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
-/*
-Thing 6)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 7)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 8)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 9)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
 
 
@@ -198,6 +130,76 @@ Thing 4) corgi
     1) bark
     2) beg for treats
     3) play catch
+ */
+
+ /*
+Thing 5) VR: External camera
+5 properties:
+    1) amount of megapixels on camera
+    2) camera diameter in mm
+    3) camera resolution
+    4) camera color mode
+    5) camera aperture
+3 things it can do:
+    1) scan room to create play boundary
+    2) detect dangerous obstacles in physical space
+    3) 'pass through' view while wearing headset
+ */
+
+/*
+Thing 6) VR: Internal screen
+5 properties:
+    1) number of pixels in each lens
+    2) distance between the two screen lenses
+    3) screen refresh rate
+    4) lens width
+    5) lens height
+3 things it can do:
+    1) display game/content
+    2) adjust lens distance
+    3) turn on/off
+ */
+
+/*
+Thing 7) VR: Controllers
+5 properties:
+    1) number of buttons
+    2) length of wrist strap
+    3) trigger depth press
+    4) weight of controller
+    5) length of controller
+3 things it can do:
+    1) press buttons to interact with game
+    2) track in VR space
+    3) rumble with haptic feedback
+ */
+
+/*
+Thing 8) VR: Memory
+5 properties:
+    1) amount of total memory
+    2) amount of memory used
+    3) amount of memory available
+    4) type of memory (e.g. nvme)
+    5) brand of memory (e.g. WD, seagate)
+3 things it can do:
+    1) Save game progress
+    2) Remove game data
+    3) Store new game download
+ */
+
+/*
+Thing 9) Head strap
+5 properties:
+    1) length of circumference
+    2) length of top strap
+    3) type of material
+    4) color of strap
+    5) number of velcro pads
+3 things it can do:
+    1) tighten
+    2) loosten
+    3) be replaced with new strap
  */
 
 /*
