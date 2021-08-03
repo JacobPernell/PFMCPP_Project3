@@ -135,11 +135,11 @@ Thing 4) corgi
  /*
 Thing 5) VR: External camera
 5 properties:
-    1) amount of megapixels on camera
-    2) camera diameter in mm
-    3) camera resolution
-    4) camera color mode
-    5) camera aperture
+    1) amount of megapixels
+    2) diameter in mm
+    3) resolution
+    4) color mode
+    5) aperture
 3 things it can do:
     1) scan room to create play boundary
     2) detect dangerous obstacles in physical space
@@ -147,17 +147,17 @@ Thing 5) VR: External camera
  */
 
 /*
-Thing 6) VR: Internal screen
+Thing 6) VR: Lenses
 5 properties:
-    1) number of pixels in each lens
-    2) distance between the two screen lenses
-    3) screen refresh rate
-    4) lens width
-    5) lens height
+    1) type of coating
+    2) distance between the two lenses
+    3) prescription strength
+    4) width
+    5) height
 3 things it can do:
-    1) display game/content
+    1) view game/content
     2) adjust lens distance
-    3) turn on/off
+    3) focus on screen
  */
 
 /*
