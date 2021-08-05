@@ -150,6 +150,39 @@ Thing 1) PlayStation 4
     2) watch Netflix shows
     3) take in/eject a game disk
  */
+ struct PlayStationFour
+ {
+    // 1) number of controllers
+    int numControllers = 2;
+    // 2) type of display cable attached
+    std::string displayCableType = "HDMI";
+    // 3) amount of electricity used per day
+    float electricityUsedPerDayInKWh = 28.9f;
+    // 4) number of usb ports
+    int numUsbPorts = 4;
+    // 5) amount of time on per week in min
+    float minUsedPerWeek = 398.25f;
+
+    struct Game
+    {
+        std::string name = "Last of Us";
+        std::string genre = "Action Survival";
+        int maxNumPlayers = 1;
+        double sizeInGigabytes = 40.2;
+        bool isSequel = false;
+
+        void downloadToLocalStorage(double amtGbNeededLocally = 10.3);
+        void autoSave(double memoryNeededToSave, double minsSinceLastSave = 30.2);
+        int getTimesPlayed(bool includeFriendPlaySessions);
+    };
+
+    // 1) play games
+    void playGame(Game game);
+    // 2) watch Netflix shows
+    void watchShow(std::string nameOfShow);
+    // 3) take in/eject a game disc
+    Game ejectGameDisc(Game game);
+ };
 
 /*
 Thing 2) Macbook Pro laptop
