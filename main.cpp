@@ -182,6 +182,8 @@ Thing 1) PlayStation 4
     void watchShow(std::string nameOfShow);
     // 3) take in/eject a game disc
     Game ejectGameDisc(Game game);
+
+    Game currentGame;
  };
 
 /*
