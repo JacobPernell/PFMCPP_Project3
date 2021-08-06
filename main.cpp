@@ -199,6 +199,41 @@ Thing 2) Macbook Pro laptop
     2) browse the internet
     3) download apps
  */
+struct MacbookPro
+{   
+    // 1) number of keys
+    int numKeys = 78;
+    // 2) system language
+    std::string systemLanguage = "EN";
+    // 3) size of screen
+    float screenSizeInInches = 13.3f;
+    // 4) battery life remaining
+    int percentageBatteryRemaining = 59;
+    // 5) number of usb ports
+    int numUsbPorts = 2;
+
+    struct App
+    {
+        std::string name = "Awesome App";
+        std::string developer = "Awesome Devs LLC";
+        int numRatings = 309;
+        float rating = 4.9f;
+        double sizeInGigabytes = 13.9;
+
+        void updateToLatestVersion(double versionNumber);
+        void uninstall(bool saveUserPreferences = false);
+        double installPackage(double packageSizeInGb);
+    };
+
+    // 1) turn off/on
+    void turnOnOff(int currentPowerStatus = 0);
+    // 2) browse the internet
+    bool browseInternet(std::string websiteUrl); // for the sake of practice, I'm thinking the return type of this could be a true/false value if it successfully connected to the website
+    // 3) download apps
+    void downloadApp(App app, double hardDriveSpaceAvailable = 359.32);
+
+    App favoriteApp;
+};
 
 /*
 Thing 3) iPhone
@@ -213,6 +248,27 @@ Thing 3) iPhone
     2) send texts
     3) set a timer
  */
+ struct Iphone
+ {
+    // 1) size of screen
+    float diagScreenSizeInches = 5.85f;
+    // 2) model number
+    std::string model = "iPhone 11 Pro";
+    // 3) number of call minutes used this month
+    float monthlyCallMinsUsed = 108.3f;
+    // 4) time spent browsing instagram
+    double minSpentBrowsingInstagramToday = 34.5;
+    // 5) number of side buttons
+    int numSideButtons = 3;
+
+    // 1) make calls
+    float makeCall(std::string nameOfCallee);
+    // 2) send texts
+    void sendText(std::string message);
+    // 3) set a timer
+    void setTimer(double duration);
+
+ };
 
 /*
 Thing 4) corgi
@@ -227,6 +283,26 @@ Thing 4) corgi
     2) beg for treats
     3) play catch
  */
+struct Corgi
+{
+    // 1) number of legs
+    int numLegs = 4;
+    // 2) weight
+    float weightInPounds = 27.2f;
+    // 3) average loudness of bark in dB
+    float avgBarkLoudnessDb = 82.1f;
+    // 4) color of eyes
+    std::string eyeColor = "Dark brown";
+    // 5) age   
+    int age = 7;
+
+    // 1) bark
+    void bark(float loudness);
+    // 2) beg for treats
+    void begForTreats(int numOfTreats, float durationOfBeggingInMin = 248.2f);
+    // 3) play catch
+    void playCatch(int numTimesThrowBall);
+};
 
  /*
 Thing 5) VR: External camera
@@ -241,6 +317,26 @@ Thing 5) VR: External camera
     2) detect dangerous obstacles in physical space
     3) 'pass through' view while wearing headset
  */
+ struct VRCamera
+ {
+    // 1) amount of megapixels
+    float megapixels = 3.5f;
+    // 2) diameter in mm
+    float diameterInMm = 15.f;
+    // 3) resolution
+    std::string resolution = "1832×1920";
+    // 4) color mode
+    std::string colorMode = "Full color";
+    // 5) aperture
+    float aperture = 4.f;
+
+    // 1) scan room to create play boundary
+    void scanRoom(bool playerIsStanding = true);
+    // 2) detect dangerous obstacles in physical space
+    bool detectObstacles(bool hasAlreadyScannedRoom);
+    // 3) 'pass through' view while wearing headset
+    void togglePasshroughView(bool isCurrentlyPassthroughView = false);
+ };
 
 /*
 Thing 6) VR: Lenses
@@ -255,6 +351,26 @@ Thing 6) VR: Lenses
     2) adjust lens distance
     3) focus on screen
  */
+struct VRLenses
+{
+    // 1) type of coating
+    std::string typeOfCoating = "Anti-reflective";
+    // 2) distance between the two lenses
+    float lensDistanceInMm = 63.f;
+    // 3) prescription strength
+    float prescriptionStrength = 6.25f;
+    // 4) width
+    float widthInCm = 5.07f;
+    // 5) height
+    float heightInCm = 4.89f;
+
+    // 1) view game/content
+    void viewGame(std::string game);
+    // 2) adjust lens distance
+    float adjustLensDistance(float currentDistance, float amountToAdjust);
+    // 3) focus on screen
+    void focusOnScreen(bool currentlyInFocus);
+};
 
 /*
 Thing 7) VR: Controllers
@@ -269,6 +385,26 @@ Thing 7) VR: Controllers
     2) track in VR space
     3) rumble with haptic feedback
  */
+ struct VRControllers
+ {
+    // 1) number of buttons
+    int numButtons = 4;
+    // 2) length of wrist strap
+    float wristStrapLengthInCm = 12.7f;
+    // 3) trigger depth press
+    float triggerPress = 0.f;
+    // 4) weight of controller
+    float weightInGrams = 126.1f;
+    // 5) length of controller
+    float lengthInCm = 12.f;
+
+    // 1) press buttons to interact with game
+    void pressButton(std::string button);
+    // 2) track in VR space
+    bool trackingWorldSpace(std::string appName, bool gameIsRunning = false);
+    // 3) rumble with haptic feedback
+    float rumble(float rumbleIntensity);
+ };
 
 /*
 Thing 8) VR: Memory
@@ -276,13 +412,34 @@ Thing 8) VR: Memory
     1) amount of total memory
     2) amount of memory used
     3) amount of memory available
-    4) type of memory (e.g. nvme)
-    5) brand of memory (e.g. WD, seagate)
+    4) type of memory
+    5) brand of memory
 3 things it can do:
     1) Save game progress
     2) Remove game data
     3) Store new game download
  */
+struct VRMemory
+{
+    // 1) amount of total memory
+    double totalMemoryInGb = 6;
+    // 2) amount of memory used
+    double memoryUsedInGb = 1.432;
+    // 3) amount of memory available
+    double memoryAvailableInGb = 4.568;
+    // 4) type of memory
+    std::string typeOfMemory = "DDR4";
+    // 5) brand of memory
+    std::string brandOfMemory = "Qualcomm";
+
+    // 1) Save game progress
+    bool saveGameProgress(std::string currentCheckpoint, double memoryNeeded);
+    // 2) Remove game data
+    void removeGameData(std::string gameName);
+    // 3) Store new game download
+    void newGameDownload(double memoryNeeded);
+
+};
 
 /*
 Thing 9) Head strap
@@ -297,12 +454,32 @@ Thing 9) Head strap
     2) loosten
     3) be replaced with new strap
  */
+ struct VRHeadStrap
+ {
+    // 1) length of circumference
+    float circumference = 53.2f;
+    // 2) length of top strap
+    float lengthOfTopStrap = 295.5f;
+    // 3) type of material
+    std::string typeOfMaterial = "Velcro";
+    // 4) color of strap
+    std::string colorOfStrap = "Gray";
+    // 5) number of velcro pads
+    int numVelcroPads = 3;
+
+    // 1) tighten
+    void tighten(float amountToTighten);
+    // 2) loosten
+    void loosten(float amountToLoosten);
+    // 3) be replaced with new strap
+    void replaceStrap(std::string brandName);
+ };
 
 /*
 Thing 10) VR headset
 5 properties:
     1) External camera
-    2) Internal screen
+    2) Lenses
     3) Controllers
     4) Memory
     5) Head strap
@@ -311,7 +488,26 @@ Thing 10) VR headset
     2) Scan room
     3) Track head movement
  */
+struct VRHeadset {
+    // 1) External camera
+    VRCamera camera;
+    // 2) Lenses
+    VRLenses lenses;
+    // 3) Controllers
+    VRControllers controllers;
+    // 4) Memory
+    VRMemory memory;
+    // 5) Head strap
+    VRHeadStrap strap;
 
+    // 1) Play games
+    // Or should this be something like lenses::viewGame(); ?
+    float playGame(std::string gameName, int numPlayers = 2);
+    // 2) Scan room
+    void scanRoom(float roomWidthFeet = 12.4f, float roomHeightFeet = 14.3f);
+    // 3) Track head movement
+    void trackHeadMovement(double acceleration, float xCoord, float yCoord, float zCoord);
+};
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
