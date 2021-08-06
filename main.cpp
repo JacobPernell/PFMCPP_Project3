@@ -488,7 +488,8 @@ Thing 10) VR headset
     2) Scan room
     3) Track head movement
  */
-struct VRHeadset {
+struct VRHeadset
+{
     // 1) External camera
     VRCamera camera;
     // 2) Lenses
