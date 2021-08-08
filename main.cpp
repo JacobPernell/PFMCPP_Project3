@@ -118,7 +118,7 @@ struct Person
 
     struct Foot
     {
-        int stepForward();
+        void stepForward();
         int stepSize();
     };
 
@@ -130,9 +130,9 @@ struct Person
 
 void Person::run(int howFast, bool startWithLeftFoot)
 {
-    if (startWithLeftFoot)
+    if (startWithLeftFoot == true)
     {
-        int leftFootStepSize = leftFoot.stepForward();
+        leftFoot.stepForward();
         rightFoot.stepForward();
     } 
     else 
@@ -140,9 +140,20 @@ void Person::run(int howFast, bool startWithLeftFoot)
         rightFoot.stepForward();
         leftFoot.stepForward();
     }
-    distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
+    distanceTraveled += (leftFoot.stepSize() + rightFoot.stepSize()) * howFast;
 }
 
+// Not quite sure if this is the right syntax and if it's better practice to put this here or in the struct itself
+void Person::Foot::stepForward()
+{
+    std::cout << "Steps forward" << std::endl;
+}
+
+int Person::Foot::stepSize()
+{
+    // I couldn't quite figure out how to access the distanceTraveled member variable. Wanted to modify that variable as part of this function, but haven't wrapped my head around inheritance yet I think, so I'll just simply return an int for now
+    return 1;
+}
 
 
  /*
@@ -185,6 +196,45 @@ void Person::run(int howFast, bool startWithLeftFoot)
     Game currentGame;
  };
 
+void PlayStationFour::playGame(PlayStationFour::Game game)
+{
+    std::cout << "Playing: " << game.name << std::endl;
+}
+
+void PlayStationFour::watchShow(std::string nameOfShow)
+{
+    std::cout << "Watching: " << nameOfShow << std::endl;
+}
+
+PlayStationFour::Game PlayStationFour::ejectGameDisc(PlayStationFour::Game game)
+{
+    std::cout << "Ejecting " << game.name << std::endl;
+    return game;
+}
+
+void PlayStationFour::Game::downloadToLocalStorage(double amtGbNeededLocally)
+{
+    std::cout << "Downloading game and taking up " << amtGbNeededLocally << " space." << std::endl;
+}
+
+void PlayStationFour::Game::autoSave(double memoryNeededToSave, double minsSinceLastSave)
+{
+    if (minsSinceLastSave > 1)
+    {
+        std::cout << "Saving game, taking up " << memoryNeededToSave;
+    }
+}
+
+int PlayStationFour::Game::getTimesPlayed(bool includeFriendPlaySessions)
+{
+    if (includeFriendPlaySessions)
+    {
+        return 2;
+    }
+    return 1;
+}
+
+
 struct MacbookPro
 {   
     int numKeys = 78;
@@ -213,6 +263,38 @@ struct MacbookPro
     App favoriteApp;
 };
 
+void MacbookPro::turnOnOff(int currentPowerStatus)
+{
+    // probably should have just made this a bool and done
+    // currentPowerStatus = !currentPowerStatus
+    // but here's the int-version implementation
+    if (currentPowerStatus == 0) {
+        currentPowerStatus = 1;
+    }
+    currentPowerStatus = 0;
+}
+
+bool MacbookPro::browseInternet(std::string websiteUrl)
+{
+    if (websiteUrl != "")
+    {
+        std::cout << "Connected to website and now browsing!" << std::endl;
+        return true;
+    }
+    std::cout << "Could not connect to website" << std::endl;
+    return false;
+}
+
+void MacbookPro::downloadApp(MacbookPro::App app, double hardDriveSpaceAvailable)
+{
+    if (hardDriveSpaceAvailable > app.sizeInGigabytes)
+    {
+        std::cout << "Downloading app: " << app.name << std::endl;
+    }
+    std::cout << "Not enough space to download app" << std::endl;
+}
+
+
  struct Iphone
  {
     float diagScreenSizeInches = 5.85f;
@@ -224,8 +306,29 @@ struct MacbookPro
     float makeCall(std::string nameOfCallee);
     void sendText(std::string message);
     void setTimer(double duration);
-
  };
+
+float Iphone::makeCall(std::string nameOfCallee)
+{
+    if (nameOfCallee != "Bob Smith")
+    {
+        std::cout << "Calling " << nameOfCallee << " for a short chat." << std::endl;
+        return 20.f; // should probably make a new variable to track how long the call is
+    }
+    std::cout << "I don't feel like talking to Bob right now." << std::endl;
+    return 0.f;
+}
+
+void Iphone::sendText(std::string message)
+{
+    std::cout << "Sending message: " << message << std::endl;
+}
+
+void Iphone::setTimer(double duration)
+{
+    std::cout << "Set timer for " << duration << " mins." << std::endl;
+}
+
 
 struct Corgi
 {
@@ -237,8 +340,44 @@ struct Corgi
 
     void bark(float loudness);
     void begForTreats(int numOfTreats, float durationOfBeggingInMin = 248.2f);
-    void playCatch(int numTimesThrowBall);
+    void playCatch(unsigned int numTimesThrowBall);
 };
+
+void Corgi::bark(float loudness)
+{
+    if (loudness > 10.f)
+    {
+        std::cout << "Corgi barked loud" << std::endl;
+    }
+    else if (loudness > 50.f)
+    {
+        std::cout << "Corgi barked REALLY loud!" << std::endl;
+    }
+    std::cout << "I barely heard anything" << std::endl;
+}
+
+void Corgi::begForTreats(int numOfTreats, float durationOfBeggingInMin)
+{
+    if (numOfTreats > 3 && durationOfBeggingInMin > 300.f)
+    {
+        std::cout << "Corgi got lots of treats" << std::endl;
+    }
+    std::cout << "No treats for the corgi :(" << std::endl;
+}
+
+void Corgi::playCatch(unsigned int numTimesThrowBall)
+{
+    if (numTimesThrowBall > 5)
+    {
+        std::cout << "Corgi loves to play catch!" << std::endl;
+    }
+    else if (numTimesThrowBall > 25)
+    {
+        std::cout << "Corgi is tired..." << std::endl;
+    }
+    std::cout << "Corgi is bored and wants to play more" << std::endl;
+}
+
 
 struct VRCamera
 {
@@ -253,6 +392,32 @@ struct VRCamera
     void togglePasshroughView(bool isCurrentlyPassthroughView = false);
  };
 
+void VRCamera::scanRoom(bool playerIsStanding)
+{
+    if (playerIsStanding)
+    {
+        std::cout << "Scanning room" << std::endl;
+    }
+std::cout << "Please stand to scan room" << std::endl;
+}
+
+bool VRCamera::detectObstacles(bool hasAlreadyScannedRoom)
+{
+    if (hasAlreadyScannedRoom)
+    {
+        std::cout << "Obstacle detected" << std::endl;
+        return true;
+    }
+    std::cout << "Please scan room first" << std::endl;
+    return false;
+}
+
+void VRCamera::togglePasshroughView(bool isCurrentlyPassthroughView)
+{
+    isCurrentlyPassthroughView = !isCurrentlyPassthroughView;
+}
+
+
 struct VRLenses
 {
     std::string typeOfCoating = "Anti-reflective";
@@ -266,6 +431,30 @@ struct VRLenses
     void focusOnScreen(bool currentlyInFocus);
 };
 
+void VRLenses::viewGame(std::string game)
+{
+    std::cout << "Currently viewing " << game << std::endl;
+}
+
+float VRLenses::adjustLensDistance(float currentDistance, float amountToAdjust)
+{
+    std::cout << "Current distance is " << currentDistance << std::endl;
+    std::cout << "Distance adjusted by " << amountToAdjust << std::endl;
+    std::cout << "New distance " << currentDistance - amountToAdjust << std::endl;
+
+    return currentDistance - amountToAdjust;
+}
+
+void VRLenses::focusOnScreen(bool currentlyInFocus)
+{
+    if (currentlyInFocus)
+    {
+        std::cout << "Focused!" << std::endl;
+    }
+    std::cout << "Need to focus" << std::endl;
+}
+
+
  struct VRControllers
  {
     int numButtons = 4;
@@ -276,8 +465,30 @@ struct VRLenses
 
     void pressButton(std::string button);
     bool trackingWorldSpace(std::string appName, bool gameIsRunning = false);
-    float rumble(float rumbleIntensity);
+    void rumble(float rumbleIntensity);
  };
+
+void VRControllers::pressButton(std::string button)
+{
+    std::cout << "Button pressed: " << button << std::endl;
+}
+
+bool VRControllers::trackingWorldSpace(std::string appName, bool gameIsRunning)
+{
+    if (gameIsRunning)
+    {
+        std::cout << "Tracking world space for " << appName << std::endl;
+        return true;
+    }
+    std::cout << "Cannot track world space when game is not running." << std::endl;
+    return false;
+}
+
+void VRControllers::rumble(float rumbleIntensity)
+{
+    std::cout << "Rumbling controllers at intensity level: " << rumbleIntensity << std::endl;
+}
+
 
 struct VRMemory
 {
@@ -290,8 +501,31 @@ struct VRMemory
     bool saveGameProgress(std::string currentCheckpoint, double memoryNeeded);
     void removeGameData(std::string gameName);
     void newGameDownload(double memoryNeeded);
-
 };
+
+bool VRMemory::saveGameProgress(std::string currentCheckpoint, double memoryNeeded)
+{
+    if (memoryNeeded > 0)
+    {
+        std::cout << "Saving game at " << currentCheckpoint << std::endl;
+        return true;
+    }
+    return false;
+}
+
+void VRMemory::removeGameData(std::string gameName)
+{
+    if (gameName != "")
+    {
+        std::cout << "Removing " << gameName << " from memory" << std::endl;
+    }
+}
+
+void VRMemory::newGameDownload(double memoryNeeded)
+{
+    std::cout << "Taking up " << memoryNeeded << " to download game." << std::endl;
+}
+
 
  struct VRHeadStrap
  {
@@ -306,6 +540,31 @@ struct VRMemory
     void replaceStrap(std::string brandName);
  };
 
+void VRHeadStrap::tighten(float amountToTighten)
+{
+    if (amountToTighten < 100.f && amountToTighten > 0.f)
+    {
+        std::cout << "Tightening strap by " << amountToTighten << std::endl;
+    }
+}
+
+void VRHeadStrap::loosten(float amountToLoosten)
+{
+    if (amountToLoosten < 100.f && amountToLoosten > 0.f)
+    {
+        std::cout << "Loostening strap by " << amountToLoosten << std::endl;
+    }
+}
+
+void VRHeadStrap::replaceStrap(std::string brandName)
+{
+    if (brandName != "Bad brand name")
+    {
+        std::cout << "Replacing strap with high quality strap from " << brandName << std::endl;
+    }
+}
+
+
 struct VRHeadset
 {
     VRCamera camera;
@@ -314,10 +573,38 @@ struct VRHeadset
     VRMemory memory;
     VRHeadStrap strap;
 
-    float playGame(std::string gameName, int numPlayers = 2);
+    float playGame(std::string gameName, unsigned int numPlayers = 2);
     void scanRoom(float roomWidthFeet = 12.4f, float roomHeightFeet = 14.3f);
     void trackHeadMovement(double acceleration, float xCoord, float yCoord, float zCoord);
 };
+
+float VRHeadset::playGame(std::string gameName, unsigned int numPlayers)
+{
+    if (numPlayers == 1)
+    {
+        std::cout << "Playing " << gameName << " by myself for a little while." << std::endl;
+        return 20.5f;
+    }
+    else if (numPlayers > 1)
+    {
+        std::cout << "Playing " << gameName << " with friends for a long time!" << std::endl;
+        return 100.f;
+    }
+    std::cout << "Not playing right now after all." << std::endl;
+    return 0.f;
+}
+
+void VRHeadset::scanRoom(float roomWidthFeet, float roomHeightFeet)
+{
+    std::cout << "Scanning room..." << std::endl;
+    std::cout << "Room has a width of " << roomWidthFeet << " and a height of " << roomHeightFeet << std::endl;
+}
+
+void VRHeadset::trackHeadMovement(double acceleration, float xCoord, float yCoord, float zCoord)
+{
+    std::cout << "Tracking head movement..." << std::endl;
+    std::cout << "Current stats: Acceleration - " << acceleration << "\n" << "x coordinate - " << xCoord << "\n" << "y coordinate - " << yCoord << "\n" << "z coordinate - "  << zCoord << std::endl;
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
