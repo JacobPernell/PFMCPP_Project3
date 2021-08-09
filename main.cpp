@@ -263,7 +263,10 @@ void MacbookPro::turnOnOff(int currentPowerStatus)
     {
         currentPowerStatus = 1;
     }
-    currentPowerStatus = 0;
+    else
+    {
+        currentPowerStatus = 0;
+    }
 }
 
 bool MacbookPro::browseInternet(std::string websiteUrl)
@@ -283,7 +286,10 @@ void MacbookPro::downloadApp(MacbookPro::App app, double hardDriveSpaceAvailable
     {
         std::cout << "Downloading app: " << app.name << std::endl;
     }
-    std::cout << "Not enough space to download app" << std::endl;
+    else
+    {
+        std::cout << "Not enough space to download app" << std::endl;
+    }
 }
 
 
