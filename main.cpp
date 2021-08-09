@@ -540,8 +540,8 @@ void VRMemory::newGameDownload(double memoryNeeded)
 }
 
 
- struct VRHeadStrap
- {
+struct VRHeadStrap
+{
     float circumference = 53.2f;
     float lengthOfTopStrap = 295.5f;
     std::string typeOfMaterial = "Velcro";
@@ -551,7 +551,7 @@ void VRMemory::newGameDownload(double memoryNeeded)
     void tighten(float amountToTighten);
     void loosten(float amountToLoosten);
     void replaceStrap(std::string brandName);
- };
+};
 
 void VRHeadStrap::tighten(float amountToTighten)
 {
