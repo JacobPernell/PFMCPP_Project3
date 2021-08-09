@@ -143,7 +143,6 @@ void Person::run(int howFast, bool startWithLeftFoot)
     distanceTraveled += (leftFoot.stepSize() + rightFoot.stepSize()) * howFast;
 }
 
-// Not quite sure if this is the right syntax and if it's better practice to put this here or in the struct itself
 void Person::Foot::stepForward()
 {
     std::cout << "Steps forward" << std::endl;
@@ -151,7 +150,6 @@ void Person::Foot::stepForward()
 
 int Person::Foot::stepSize()
 {
-    // I couldn't quite figure out how to access the distanceTraveled member variable. Wanted to modify that variable as part of this function, but haven't wrapped my head around inheritance yet I think, so I'll just simply return an int for now
     return 1;
 }
 
@@ -227,11 +225,7 @@ void PlayStationFour::Game::autoSave(double memoryNeededToSave, double minsSince
 
 int PlayStationFour::Game::getTimesPlayed(bool includeFriendPlaySessions)
 {
-    if (includeFriendPlaySessions)
-    {
-        return 2;
-    }
-    return 1;
+    return includeFriendPlaySessions ? 2 : 1;
 }
 
 
@@ -265,10 +259,8 @@ struct MacbookPro
 
 void MacbookPro::turnOnOff(int currentPowerStatus)
 {
-    // probably should have just made this a bool and done
-    // currentPowerStatus = !currentPowerStatus
-    // but here's the int-version implementation
-    if (currentPowerStatus == 0) {
+    if (currentPowerStatus == 0)
+    {
         currentPowerStatus = 1;
     }
     currentPowerStatus = 0;
@@ -295,8 +287,8 @@ void MacbookPro::downloadApp(MacbookPro::App app, double hardDriveSpaceAvailable
 }
 
 
- struct Iphone
- {
+struct Iphone
+{
     float diagScreenSizeInches = 5.85f;
     std::string model = "iPhone 11 Pro";
     float monthlyCallMinsUsed = 108.3f;
@@ -306,14 +298,14 @@ void MacbookPro::downloadApp(MacbookPro::App app, double hardDriveSpaceAvailable
     float makeCall(std::string nameOfCallee);
     void sendText(std::string message);
     void setTimer(double duration);
- };
+};
 
 float Iphone::makeCall(std::string nameOfCallee)
 {
     if (nameOfCallee != "Bob Smith")
     {
         std::cout << "Calling " << nameOfCallee << " for a short chat." << std::endl;
-        return 20.f; // should probably make a new variable to track how long the call is
+        return 20.f;
     }
     std::cout << "I don't feel like talking to Bob right now." << std::endl;
     return 0.f;
@@ -345,15 +337,18 @@ struct Corgi
 
 void Corgi::bark(float loudness)
 {
-    if (loudness > 10.f)
-    {
-        std::cout << "Corgi barked loud" << std::endl;
-    }
-    else if (loudness > 50.f)
+    if (loudness > 50.f)
     {
         std::cout << "Corgi barked REALLY loud!" << std::endl;
     }
-    std::cout << "I barely heard anything" << std::endl;
+    else if (loudness > 10.f)
+    {
+        std::cout << "Corgi barked loud" << std::endl;
+    }
+    else
+    {
+        std::cout << "I barely heard anything" << std::endl;
+    }
 }
 
 void Corgi::begForTreats(int numOfTreats, float durationOfBeggingInMin)
@@ -362,20 +357,26 @@ void Corgi::begForTreats(int numOfTreats, float durationOfBeggingInMin)
     {
         std::cout << "Corgi got lots of treats" << std::endl;
     }
-    std::cout << "No treats for the corgi :(" << std::endl;
+    else
+    {
+        std::cout << "No treats for the corgi :(" << std::endl;
+    }
 }
 
 void Corgi::playCatch(unsigned int numTimesThrowBall)
 {
-    if (numTimesThrowBall > 5)
-    {
-        std::cout << "Corgi loves to play catch!" << std::endl;
-    }
-    else if (numTimesThrowBall > 25)
+    if (numTimesThrowBall > 25)
     {
         std::cout << "Corgi is tired..." << std::endl;
     }
-    std::cout << "Corgi is bored and wants to play more" << std::endl;
+    else if (numTimesThrowBall > 5)
+    {
+        std::cout << "Corgi loves to play catch!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Corgi is bored and wants to play more" << std::endl;
+    }
 }
 
 
@@ -390,7 +391,7 @@ struct VRCamera
     void scanRoom(bool playerIsStanding = true);
     bool detectObstacles(bool hasAlreadyScannedRoom);
     void togglePasshroughView(bool isCurrentlyPassthroughView = false);
- };
+};
 
 void VRCamera::scanRoom(bool playerIsStanding)
 {
@@ -398,7 +399,10 @@ void VRCamera::scanRoom(bool playerIsStanding)
     {
         std::cout << "Scanning room" << std::endl;
     }
-std::cout << "Please stand to scan room" << std::endl;
+    else
+    {
+        std::cout << "Please stand to scan room" << std::endl;
+    }
 }
 
 bool VRCamera::detectObstacles(bool hasAlreadyScannedRoom)
@@ -451,7 +455,10 @@ void VRLenses::focusOnScreen(bool currentlyInFocus)
     {
         std::cout << "Focused!" << std::endl;
     }
-    std::cout << "Need to focus" << std::endl;
+    else
+    {
+        std::cout << "Need to focus" << std::endl;
+    }
 }
 
 
