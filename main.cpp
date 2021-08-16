@@ -66,22 +66,25 @@ int main()
 
 
 
+struct PlayStationFour
+{
+    int numControllers;
+    std::string displayCableType;
+    float electricityUsedPerDayInKWh;
+    int numUsbPorts;
+    float minUsedPerWeek;
 
- struct PlayStationFour
- {
-    int numControllers = 2;
-    std::string displayCableType = "HDMI";
-    float electricityUsedPerDayInKWh = 28.9f;
-    int numUsbPorts = 4;
-    float minUsedPerWeek = 398.25f;
+    PlayStationFour();
 
     struct Game
     {
-        std::string name = "Last of Us";
-        std::string genre = "Action Survival";
-        int maxNumPlayers = 1;
-        double sizeInGigabytes = 40.2;
-        bool isSequel = false;
+        std::string name;
+        std::string genre;
+        int maxNumPlayers;
+        double sizeInGigabytes;
+        bool isSequel;
+
+        Game();
 
         void downloadToLocalStorage(double amtGbNeededLocally = 10.3);
         void autoSave(double memoryNeededToSave, double minsSinceLastSave = 30.2);
@@ -94,6 +97,24 @@ int main()
 
     Game currentGame;
  };
+
+ PlayStationFour::PlayStationFour()
+ {
+    numControllers = 2;
+    displayCableType = "HDMI";
+    electricityUsedPerDayInKWh = 28.9f;
+    numUsbPorts = 4;
+    minUsedPerWeek = 398.25f;
+ }
+
+ PlayStationFour::Game::Game()
+ {
+    name = "Last of Us";
+    genre = "Action Survival";
+    maxNumPlayers = 1;
+    sizeInGigabytes = 40.2;
+    isSequel = false;
+ }
 
 void PlayStationFour::playGame(PlayStationFour::Game game)
 {
@@ -132,19 +153,23 @@ int PlayStationFour::Game::getTimesPlayed(bool includeFriendPlaySessions)
 
 struct MacbookPro
 {   
-    int numKeys = 78;
-    std::string systemLanguage = "EN";
-    float screenSizeInInches = 13.3f;
-    int percentageBatteryRemaining = 59;
-    int numUsbPorts = 2;
+    int numKeys;
+    std::string systemLanguage;
+    float screenSizeInInches;
+    int percentageBatteryRemaining;
+    int numUsbPorts;
+
+    MacbookPro();
 
     struct App
     {
-        std::string name = "Awesome App";
-        std::string developer = "Awesome Devs LLC";
-        int numRatings = 309;
-        float rating = 4.9f;
-        double sizeInGigabytes = 13.9;
+        std::string name;
+        std::string developer;
+        int numRatings;
+        float rating;
+        double sizeInGigabytes;
+
+        App();
 
         void updateToLatestVersion(double versionNumber);
         void uninstall(bool saveUserPreferences = false);
@@ -158,15 +183,35 @@ struct MacbookPro
     App favoriteApp;
 };
 
+MacbookPro::MacbookPro()
+{
+    numKeys = 78;
+    systemLanguage = "EN";
+    screenSizeInInches = 13.3f;
+    percentageBatteryRemaining = 59;
+    numUsbPorts = 2;
+}
+
+MacbookPro::App::App()
+{
+    name = "Awesome App";
+    developer = "Awesome Devs LLC";
+    numRatings = 309;
+    rating = 4.9f;
+    sizeInGigabytes = 13.9;
+}
+
 void MacbookPro::turnOnOff(int currentPowerStatus)
 {
     if (currentPowerStatus == 0)
     {
         currentPowerStatus = 1;
+        std::cout << "Current power status is: " << currentPowerStatus << std::endl;
     }
     else
     {
         currentPowerStatus = 0;
+        std::cout << "Current power status is: " << currentPowerStatus << std::endl;
     }
 }
 
@@ -196,16 +241,27 @@ void MacbookPro::downloadApp(MacbookPro::App app, double hardDriveSpaceAvailable
 
 struct Iphone
 {
-    float diagScreenSizeInches = 5.85f;
-    std::string model = "iPhone 11 Pro";
-    float monthlyCallMinsUsed = 108.3f;
-    double minSpentBrowsingInstagramToday = 34.5;
-    int numSideButtons = 3;
+    float diagScreenSizeInches;
+    std::string model;
+    float monthlyCallMinsUsed;
+    double minSpentBrowsingInstagramToday;
+    int numSideButtons;
+
+    Iphone();
 
     float makeCall(std::string nameOfCallee);
     void sendText(std::string message);
     void setTimer(double duration);
 };
+
+Iphone::Iphone()
+{
+    diagScreenSizeInches = 5.85f;
+    model = "iPhone 11 Pro";
+    monthlyCallMinsUsed = 108.3f;
+    minSpentBrowsingInstagramToday = 34.5;
+    numSideButtons = 3;
+}
 
 float Iphone::makeCall(std::string nameOfCallee)
 {
@@ -231,16 +287,27 @@ void Iphone::setTimer(double duration)
 
 struct Corgi
 {
-    int numLegs = 4;
-    float weightInPounds = 27.2f;
-    float avgBarkLoudnessDb = 82.1f;
-    std::string eyeColor = "Dark brown";
-    int age = 7;
+    int numLegs;
+    float weightInPounds;
+    float avgBarkLoudnessDb;
+    std::string eyeColor;
+    int age;
+    
+    Corgi();
 
     void bark(float loudness);
     void begForTreats(int numOfTreats, float durationOfBeggingInMin = 248.2f);
     void playCatch(unsigned int numTimesThrowBall);
 };
+
+Corgi::Corgi()
+{
+    numLegs = 4;
+    weightInPounds = 27.2f;
+    avgBarkLoudnessDb = 82.1f;
+    eyeColor = "Dark brown";
+    age = 7;
+}
 
 void Corgi::bark(float loudness)
 {
@@ -289,16 +356,27 @@ void Corgi::playCatch(unsigned int numTimesThrowBall)
 
 struct VRCamera
 {
-    float megapixels = 3.5f;
-    float diameterInMm = 15.f;
-    std::string resolution = "1832×1920";
-    std::string colorMode = "Full color";
-    float aperture = 4.f;
+    float megapixels;
+    float diameterInMm;
+    std::string resolution;
+    std::string colorMode;
+    float aperture;
+
+    VRCamera();
 
     void scanRoom(bool playerIsStanding = true);
     bool detectObstacles(bool hasAlreadyScannedRoom);
     void togglePasshroughView(bool isCurrentlyPassthroughView = false);
 };
+
+VRCamera::VRCamera()
+{
+    megapixels = 3.5f;
+    diameterInMm = 15.f;
+    resolution = "1832×1920";
+    colorMode = "Full color";
+    aperture = 4.f;
+}
 
 void VRCamera::scanRoom(bool playerIsStanding)
 {
@@ -331,16 +409,27 @@ void VRCamera::togglePasshroughView(bool isCurrentlyPassthroughView)
 
 struct VRLenses
 {
-    std::string typeOfCoating = "Anti-reflective";
-    float lensDistanceInMm = 63.f;
-    float prescriptionStrength = 6.25f;
-    float widthInCm = 5.07f;
-    float heightInCm = 4.89f;
+    std::string typeOfCoating;
+    float lensDistanceInMm;
+    float prescriptionStrength;
+    float widthInCm;
+    float heightInCm;
+
+    VRLenses();
 
     void viewGame(std::string game);
     float adjustLensDistance(float currentDistance, float amountToAdjust);
     void focusOnScreen(bool currentlyInFocus);
 };
+
+VRLenses::VRLenses()
+{
+    typeOfCoating = "Anti-reflective";
+    lensDistanceInMm = 63.f;
+    prescriptionStrength = 6.25f;
+    widthInCm = 5.07f;
+    heightInCm = 4.89f;
+}
 
 void VRLenses::viewGame(std::string game)
 {
@@ -369,18 +458,29 @@ void VRLenses::focusOnScreen(bool currentlyInFocus)
 }
 
 
- struct VRControllers
- {
-    int numButtons = 4;
-    float wristStrapLengthInCm = 12.7f;
-    float triggerPress = 0.f;
-    float weightInGrams = 126.1f;
-    float lengthInCm = 12.f;
+struct VRControllers
+{
+    int numButtons;
+    float wristStrapLengthInCm;
+    float triggerPress;
+    float weightInGrams;
+    float lengthInCm;
+
+    VRControllers();
 
     void pressButton(std::string button);
     bool trackingWorldSpace(std::string appName, bool gameIsRunning = false);
     void rumble(float rumbleIntensity);
  };
+
+VRControllers::VRControllers()
+{
+    numButtons = 4;
+    wristStrapLengthInCm = 12.7f;
+    triggerPress = 0.f;
+    weightInGrams = 126.1f;
+    lengthInCm = 12.f;
+}
 
 void VRControllers::pressButton(std::string button)
 {
@@ -406,16 +506,27 @@ void VRControllers::rumble(float rumbleIntensity)
 
 struct VRMemory
 {
-    double totalMemoryInGb = 6;
-    double memoryUsedInGb = 1.432;
-    double memoryAvailableInGb = 4.568;
-    std::string typeOfMemory = "DDR4";
-    std::string brandOfMemory = "Qualcomm";
+    double totalMemoryInGb;
+    double memoryUsedInGb;
+    double memoryAvailableInGb;
+    std::string typeOfMemory;
+    std::string brandOfMemory;
+
+    VRMemory();
 
     bool saveGameProgress(std::string currentCheckpoint, double memoryNeeded);
     void removeGameData(std::string gameName);
     void newGameDownload(double memoryNeeded);
 };
+
+VRMemory::VRMemory()
+{
+    totalMemoryInGb = 6;
+    memoryUsedInGb = 1.432;
+    memoryAvailableInGb = 4.568;
+    typeOfMemory = "DDR4";
+    brandOfMemory = "Qualcomm";
+}
 
 bool VRMemory::saveGameProgress(std::string currentCheckpoint, double memoryNeeded)
 {
@@ -443,16 +554,27 @@ void VRMemory::newGameDownload(double memoryNeeded)
 
 struct VRHeadStrap
 {
-    float circumference = 53.2f;
-    float lengthOfTopStrap = 295.5f;
-    std::string typeOfMaterial = "Velcro";
-    std::string colorOfStrap = "Gray";
-    int numVelcroPads = 3;
+    float circumference;
+    float lengthOfTopStrap;
+    std::string typeOfMaterial;
+    std::string colorOfStrap;
+    int numVelcroPads;
+
+    VRHeadStrap();
 
     void tighten(float amountToTighten);
     void loosten(float amountToLoosten);
     void replaceStrap(std::string brandName);
 };
+
+VRHeadStrap::VRHeadStrap()
+{
+    circumference = 53.2f;
+    lengthOfTopStrap = 295.5f;
+    typeOfMaterial = "Velcro";
+    colorOfStrap = "Gray";
+    numVelcroPads = 3;
+}
 
 void VRHeadStrap::tighten(float amountToTighten)
 {
@@ -487,10 +609,21 @@ struct VRHeadset
     VRMemory memory;
     VRHeadStrap strap;
 
+    VRHeadset();
+
     float playGame(std::string gameName, unsigned int numPlayers = 2);
     void scanRoom(float roomWidthFeet = 12.4f, float roomHeightFeet = 14.3f);
     void trackHeadMovement(double acceleration, float xCoord, float yCoord, float zCoord);
 };
+
+VRHeadset::VRHeadset()
+{
+    VRCamera camera;
+    VRLenses lenses;
+    VRControllers controllers;
+    VRMemory memory;
+    VRHeadStrap strap;
+}
 
 float VRHeadset::playGame(std::string gameName, unsigned int numPlayers)
 {
@@ -538,6 +671,46 @@ void VRHeadset::trackHeadMovement(double acceleration, float xCoord, float yCoor
 int main()
 {
     Example::main();
+
+
+    PlayStationFour newPS4;
+    PlayStationFour refurbishedPS4;
+    PlayStationFour::Game borrowedGame;
+    MacbookPro workLaptop;
+    MacbookPro::App timeTrackerApp;
+    Iphone personalCellPhone;
+    Corgi apollo;
+    // I'm wondering if it was redundant to create new objects from these structs, when they ultimately will be part of VRHeadset oculusQuest;
+    VRCamera vrCamera;
+    VRLenses vrLenses;
+    VRControllers vrControllers;
+    VRMemory vrMem;
+    VRHeadStrap headStrap;
+    VRHeadset oculusQuest;
+
+    newPS4.watchShow("Lupin");
+    refurbishedPS4.playGame(borrowedGame);
     
+    workLaptop.downloadApp(timeTrackerApp, 359.32);
+    std::cout << workLaptop.systemLanguage << std::endl;
+
+    personalCellPhone.setTimer(23);
+
+    apollo.bark(49);
+
+    vrCamera.detectObstacles(true);
+    std::cout << "VR camera has " << vrCamera.megapixels << " megapixels." << std::endl;
+
+    vrLenses.viewGame("Awesome Game");
+
+    vrControllers.pressButton("A button");
+    std::cout << (vrControllers.weightInGrams > 300 ? "The controllers are heavy" : "The controllers aren't heavy") << std::endl;
+
+    vrMem.saveGameProgress("Checkpoint A", 32.0);
+
+    headStrap.loosten(20.0f);
+    
+    oculusQuest.trackHeadMovement(39, 5.9f, 3.3f, 2.4f);
+
     std::cout << "good to go!" << std::endl;
 }
