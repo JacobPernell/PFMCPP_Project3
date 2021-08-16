@@ -18,7 +18,8 @@
  3) Instantiate 1 or 2 instances of each of your user-defined types in the main() function.
 
  4) For each instantiated UDT: 
-        call some of those amended member functions in main().
+        call each of that instance's member functions.
+        You're doing this to show that your code doesn't produce warnings when you call the functions that take arguments.
  
  5) add some std::cout statements in main() that print out your UDT's member variable values or values returned from your UDT member functions (if they return values)
  
@@ -203,6 +204,24 @@ MacbookPro::App::App()
     numRatings = 309;
     rating = 4.9f;
     sizeInGigabytes = 13.9;
+}
+
+void MacbookPro::App::updateToLatestVersion(double versionNumber)
+{
+    std::cout << "Updated app to version number " << versionNumber << std::endl;
+}
+
+void MacbookPro::App::uninstall(bool saveUserPreferences)
+{
+    std::cout << (saveUserPreferences ? "Uninstalled app and saved user preferences" : "Uninstalled app and did not save user preferences") << std::endl;
+}
+
+double MacbookPro::App::installPackage(double packageSizeInGb)
+{
+    std::cout << "Installed app package for " << packageSizeInGb << "gb" << std::endl;
+    sizeInGigabytes += packageSizeInGb;
+    std::cout << "New total pacakge size is " << sizeInGigabytes << "gb" << std::endl;
+    return sizeInGigabytes;
 }
 
 void MacbookPro::turnOnOff(int currentPowerStatus)
@@ -629,16 +648,7 @@ struct VRHeadset
     void scanRoom(float roomWidthFeet = 12.4f, float roomHeightFeet = 14.3f);
     void trackHeadMovement(double acceleration, float xCoord, float yCoord, float zCoord);
 };
-/*
-VRHeadset::VRHeadset()
-{
-    VRCamera camera;
-    VRLenses lenses;
-    VRControllers controllers;
-    VRMemory memory;
-    VRHeadStrap strap;
-}
-*/
+
 float VRHeadset::playGame(std::string gameName, unsigned int numPlayers)
 {
     if (numPlayers == 1)
@@ -687,46 +697,72 @@ int main()
     Example::main();
 
     PlayStationFour newPS4;
-    PlayStationFour refurbishedPS4;
+    PlayStationFour::Game myFavoriteGame;
     PlayStationFour::Game borrowedGame;
     MacbookPro workLaptop;
     MacbookPro::App timeTrackerApp;
+    MacbookPro::App xcode;
     Iphone personalCellPhone;
     Corgi apollo;
-    /*
-    VRCamera vrCamera;
-    VRLenses vrLenses;
-    VRControllers vrControllers;
-    VRMemory vrMem;
-    VRHeadStrap headStrap;
-    */
     VRHeadset oculusQuest;
 
+    newPS4.playGame(borrowedGame);
     newPS4.watchShow("Lupin");
-    refurbishedPS4.playGame(borrowedGame);
-    
-    workLaptop.downloadApp(timeTrackerApp, 359.32);
+    newPS4.ejectGameDisc(myFavoriteGame);
+
+    myFavoriteGame.downloadToLocalStorage(49.3);
+    myFavoriteGame.autoSave(21.3, 30.2);
+    myFavoriteGame.getTimesPlayed(true);
+    borrowedGame.downloadToLocalStorage(68.0);
+    borrowedGame.autoSave(12.2, 3.3);
+    borrowedGame.getTimesPlayed(false);
+
+    workLaptop.turnOnOff(0);
+    workLaptop.browseInternet("https://www.programmingformusicians.com/");
+    workLaptop.downloadApp(xcode, 456.2);
     std::cout << workLaptop.systemLanguage << std::endl;
 
-    personalCellPhone.setTimer(23);
+    timeTrackerApp.updateToLatestVersion(2.3);
+    timeTrackerApp.uninstall(false);
+    timeTrackerApp.installPackage(5.3);
+    std::cout << "App developer: " << timeTrackerApp.developer << std::endl;
+    xcode.updateToLatestVersion(12.5);
+    xcode.uninstall(true);
+    xcode.installPackage(2398.4);
 
-    apollo.bark(49);
+    personalCellPhone.makeCall("Jacob");
+    personalCellPhone.sendText("Hey how are you?");
+    personalCellPhone.setTimer(30);
 
-    /*
-    vrCamera.detectObstacles(true);
-    std::cout << "VR camera has " << vrCamera.megapixels << " megapixels." << std::endl;
+    apollo.bark(398.2f);
+    apollo.begForTreats(7, 309.1f);
+    apollo.playCatch(5);
 
-    vrLenses.viewGame("Awesome Game");
-
-    vrControllers.pressButton("A button");
-    std::cout << (vrControllers.weightInGrams > 300 ? "The controllers are heavy" : "The controllers aren't heavy") << std::endl;
-
-    vrMem.saveGameProgress("Checkpoint A", 32.0);
-
-    headStrap.loosten(20.0f);
-    */
+    oculusQuest.playGame("Beat Saber", 1);
+    oculusQuest.scanRoom(10.2f, 9.3f);
+    oculusQuest.trackHeadMovement(20, 12.0f, 34.2f, 49.5f);
     
-    oculusQuest.trackHeadMovement(39, 5.9f, 3.3f, 2.4f);
+    oculusQuest.camera.scanRoom(true);
+    oculusQuest.camera.detectObstacles(false);
+    oculusQuest.camera.togglePasshroughView(false);
+    std::cout << "VR camera has " << oculusQuest.camera.megapixels << " megapixels." << std::endl;
+    
+    oculusQuest.lenses.viewGame("The Climb");
+    oculusQuest.lenses.adjustLensDistance(49.0f, 4.2f);
+    oculusQuest.lenses.focusOnScreen(false);
+    
+    oculusQuest.controllers.pressButton("A");
+    oculusQuest.controllers.trackingWorldSpace("Rec Room", true);
+    oculusQuest.controllers.rumble(34.5f);
+    std::cout << (oculusQuest.controllers.weightInGrams > 300 ? "The controllers are heavy" : "The controllers aren't heavy") << std::endl;
+    
+    oculusQuest.memory.saveGameProgress("Checkpoint A", 23.4);
+    oculusQuest.memory.removeGameData("Rec Room");
+    oculusQuest.memory.newGameDownload(54.3);
+    
+    oculusQuest.strap.tighten(8.3f);
+    oculusQuest.strap.loosten(2.7f);
+    oculusQuest.strap.replaceStrap("Official Oculus Headstrap");
 
     std::cout << "good to go!" << std::endl;
 }
