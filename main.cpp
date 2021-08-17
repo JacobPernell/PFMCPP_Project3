@@ -49,11 +49,17 @@ struct PlayStationFour
     int numUsbPorts = 4;
     float minUsedPerWeek = 0.0f;
 
-    PlayStationFour();
+    PlayStationFour()
+    {
+        std::cout << "created a PlayStationFour" << std::endl;
+    }
 
     struct Game
     {
-        Game();
+        Game()
+        {
+            std::cout << "created a PlayStationFour::Game" << std::endl;
+        }
 
         std::string name = "Game Name";
         std::string genre = "Game Genre";
@@ -84,7 +90,8 @@ struct PlayStationFour
         }
     };
 
-    void playGame(Game game) {
+    void playGame(Game game)
+    {
         std::cout << "Playing: " << game.name << std::endl;
     }
 
@@ -100,20 +107,13 @@ struct PlayStationFour
     }
  };
 
- PlayStationFour::PlayStationFour()
- {
-    std::cout << "created a PlayStationFour" << std::endl;
- }
-
- PlayStationFour::Game::Game()
- {
-    std::cout << "created a PlayStationFour::Game" << std::endl;
- }
-
 
 struct MacbookPro
 {   
-    MacbookPro();
+    MacbookPro()
+    {
+        std::cout << "created a MacbookPro" << std::endl;
+    }
 
     int numKeys = 78;
     std::string systemLanguage = "EN";
@@ -123,7 +123,10 @@ struct MacbookPro
 
     struct App
     {
-        App();
+        App()
+        {
+            std::cout << "created a MacbookPro::App" << std::endl;
+        }
 
         std::string name = "App Name";
         std::string developer = "Developer Name";
@@ -196,20 +199,13 @@ struct MacbookPro
 
 };
 
-MacbookPro::MacbookPro()
-{
-    std::cout << "created a MacbookPro" << std::endl;
-}
-
-MacbookPro::App::App()
-{
-    std::cout << "created a MacbookPro::App" << std::endl;
-}
-
 
 struct Iphone
 {
-    Iphone();
+    Iphone()
+    {
+        std::cout << "created a Iphone" << std::endl;
+    }
 
     float diagScreenSizeInches = 5.85f;
     std::string model = "iPhone 11 Pro";
@@ -240,21 +236,19 @@ struct Iphone
     }
 };
 
-Iphone::Iphone()
-{
-    std::cout << "created a Iphone" << std::endl;
-}
-
 
 struct Corgi
 {
-    Corgi();
+    Corgi()
+    {
+        std::cout << "created a Corgi" << std::endl;
+    }
 
-    int numLegs;
-    float weightInPounds;
-    float avgBarkLoudnessDb;
-    std::string eyeColor;
-    int age;
+    int numLegs = 4;
+    float weightInPounds = 27.2f;
+    float avgBarkLoudnessDb = 82.1f;
+    std::string eyeColor = "Dark brown";
+    int age = 7;
 
     void bark(float loudness)
     {
@@ -302,26 +296,19 @@ struct Corgi
     }
 };
 
-Corgi::Corgi() :
-numLegs(4),
-weightInPounds(27.2f),
-avgBarkLoudnessDb(82.1f),
-eyeColor("Dark brown"),
-age(7)
-{
-    std::cout << "created a Corgi" << std::endl;
-}
-
 
 struct VRCamera
 {
-    VRCamera();
+    VRCamera()
+    {
+        std::cout << "created a VRCamera" << std::endl;
+    }
 
-    float megapixels;
-    float diameterInMm;
-    std::string resolution;
-    std::string colorMode;
-    float aperture;
+    float megapixels = 3.5f;
+    float diameterInMm = 15.0f;
+    std::string resolution = "1832×1920";
+    std::string colorMode = "Full color";
+    float aperture = 4.0f;
 
     void scanRoom(bool playerIsStanding = true)
     {
@@ -352,26 +339,19 @@ struct VRCamera
     }
 };
 
-VRCamera::VRCamera() :
-megapixels(3.5f),
-diameterInMm(15.0f),
-resolution("1832×1920"),
-colorMode("Full color"),
-aperture(4.0f)
-{
-    std::cout << "created a VRCamera" << std::endl;
-}
-
 
 struct VRLenses
 {
-    VRLenses();
+    VRLenses()
+    {
+        std::cout << "created a VRLenses" << std::endl;
+    }
 
-    std::string typeOfCoating;
-    float lensDistanceInMm;
-    float prescriptionStrength;
-    float widthInCm;
-    float heightInCm;
+    std::string typeOfCoating = "Anti-reflective";
+    float lensDistanceInMm = 63.0f;
+    float prescriptionStrength = 6.25f;
+    float widthInCm = 5.07f;
+    float heightInCm = 4.89f;
 
     void viewGame(std::string game)
     {
@@ -401,20 +381,13 @@ struct VRLenses
     }
 };
 
-VRLenses::VRLenses() :
-typeOfCoating("Anti-reflective"),
-lensDistanceInMm(63.0f),
-prescriptionStrength(6.25f),
-widthInCm(5.07f),
-heightInCm(4.89f)
-{
-    std::cout << "created a VRLenses" << std::endl;
-}
-
 
 struct VRControllers
 {
-    VRControllers();
+    VRControllers()
+    {
+        std::cout << "created a VRControllers" << std::endl;
+    }
 
     int numButtons = 4;
     float wristStrapLengthInCm = 12.7f;
@@ -444,21 +417,19 @@ struct VRControllers
     }
  };
 
-VRControllers::VRControllers()
-{
-    std::cout << "created a VRControllers" << std::endl;
-}
-
 
 struct VRMemory
 {
-    VRMemory();
+    VRMemory()
+    {
+        std::cout << "created a VRMemory" << std::endl;
+    }
 
-    double totalMemoryInGb;
-    double memoryUsedInGb;
-    double memoryAvailableInGb;
-    std::string typeOfMemory;
-    std::string brandOfMemory;
+    double totalMemoryInGb = 6;
+    double memoryUsedInGb = 1.432;
+    double memoryAvailableInGb = 4.568;
+    std::string typeOfMemory = "DDR4";
+    std::string brandOfMemory = "Qualcomm";
 
     bool saveGameProgress(std::string currentCheckpoint, double memoryNeeded)
     {
@@ -486,20 +457,13 @@ struct VRMemory
     }
 };
 
-VRMemory::VRMemory() :
-totalMemoryInGb(6),
-memoryUsedInGb(1.432),
-memoryAvailableInGb(4.568),
-typeOfMemory("DDR4"),
-brandOfMemory("Qualcomm")
-{
-    std::cout << "created a VRMemory" << std::endl;
-}
-
 
 struct VRHeadStrap
 {
-    VRHeadStrap();
+    VRHeadStrap()
+    {
+        std::cout << "created a VRHeadStrap" << std::endl;
+    }
 
     float circumference = 53.2f;
     float lengthOfTopStrap = 295.5f;
@@ -531,11 +495,6 @@ struct VRHeadStrap
         }
     }
 };
-
-VRHeadStrap::VRHeadStrap()
-{
-    std::cout << "created a VRHeadStrap" << std::endl;
-}
 
 
 struct VRHeadset
