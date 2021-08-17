@@ -43,196 +43,167 @@ int main()
 
 struct PlayStationFour
 {
-    PlayStationFour();
+    int numControllers = 2;
+    std::string displayCableType = "HDMI";
+    float electricityUsedPerDayInKWh = 28.9f;
+    int numUsbPorts = 4;
+    float minUsedPerWeek = 0.0f;
 
-    int numControllers;
-    std::string displayCableType;
-    float electricityUsedPerDayInKWh;
-    int numUsbPorts;
-    float minUsedPerWeek;
+    PlayStationFour();
 
     struct Game
     {
         Game();
 
-        std::string name;
-        std::string genre;
-        int maxNumPlayers;
-        double sizeInGigabytes;
-        bool isSequel;
+        std::string name = "Game Name";
+        std::string genre = "Game Genre";
+        int maxNumPlayers = 4;
+        double sizeInGigabytes = 0;
+        bool isSequel = false;
 
-        void downloadToLocalStorage(double amtGbNeededLocally = 10.3);
-        void autoSave(double memoryNeededToSave, double minsSinceLastSave = 30.2);
-        int getTimesPlayed(bool includeFriendPlaySessions);
+        void downloadToLocalStorage(double amtGbNeededLocally = 10.3)
+        {
+            std::cout << "Downloading game and taking up " << amtGbNeededLocally << " space." << std::endl;
+        }
+
+        void autoSave(double memoryNeededToSave, double minsSinceLastSave = 30.2)
+        {
+            if (minsSinceLastSave > 1)
+            {
+                std::cout << "Saving game, taking up " << memoryNeededToSave << std::endl;
+            }
+            else
+            {
+                std::cout << "Will autosave again after 1 minute" << std::endl;
+            }
+        }
+
+        int getTimesPlayed(bool includeFriendPlaySessions)
+        {
+            return includeFriendPlaySessions ? 2 : 1;
+        }
     };
 
-    void playGame(Game game);
-    void watchShow(std::string nameOfShow);
-    Game ejectGameDisc(Game game);
+    void playGame(Game game) {
+        std::cout << "Playing: " << game.name << std::endl;
+    }
 
-    // Game currentGame;
+    void watchShow(std::string nameOfShow)
+    {
+        std::cout << "Watching: " << nameOfShow << std::endl;
+    }
+
+    Game ejectGameDisc(Game game)
+    {
+        std::cout << "Ejecting " << game.name << std::endl;
+        return game;
+    }
  };
 
  PlayStationFour::PlayStationFour()
  {
     std::cout << "created a PlayStationFour" << std::endl;
-    numControllers = 2;
-    displayCableType = "HDMI";
-    electricityUsedPerDayInKWh = 28.9f;
-    numUsbPorts = 4;
-    minUsedPerWeek = 398.25f;
  }
 
  PlayStationFour::Game::Game()
  {
     std::cout << "created a PlayStationFour::Game" << std::endl;
-    name = "Last of Us";
-    genre = "Action Survival";
-    maxNumPlayers = 1;
-    sizeInGigabytes = 40.2;
-    isSequel = false;
  }
-
-void PlayStationFour::playGame(PlayStationFour::Game game)
-{
-    std::cout << "Playing: " << game.name << std::endl;
-}
-
-void PlayStationFour::watchShow(std::string nameOfShow)
-{
-    std::cout << "Watching: " << nameOfShow << std::endl;
-}
-
-PlayStationFour::Game PlayStationFour::ejectGameDisc(PlayStationFour::Game game)
-{
-    std::cout << "Ejecting " << game.name << std::endl;
-    return game;
-}
-
-void PlayStationFour::Game::downloadToLocalStorage(double amtGbNeededLocally)
-{
-    std::cout << "Downloading game and taking up " << amtGbNeededLocally << " space." << std::endl;
-}
-
-void PlayStationFour::Game::autoSave(double memoryNeededToSave, double minsSinceLastSave)
-{
-    if (minsSinceLastSave > 1)
-    {
-        std::cout << "Saving game, taking up " << memoryNeededToSave;
-    }
-}
-
-int PlayStationFour::Game::getTimesPlayed(bool includeFriendPlaySessions)
-{
-    return includeFriendPlaySessions ? 2 : 1;
-}
 
 
 struct MacbookPro
 {   
     MacbookPro();
 
-    int numKeys;
-    std::string systemLanguage;
-    float screenSizeInInches;
-    int percentageBatteryRemaining;
-    int numUsbPorts;
+    int numKeys = 78;
+    std::string systemLanguage = "EN";
+    float screenSizeInInches = 13.3f;
+    int percentageBatteryRemaining = 100;
+    int numUsbPorts = 2;
 
     struct App
     {
         App();
 
-        std::string name;
-        std::string developer;
-        int numRatings;
-        float rating;
-        double sizeInGigabytes;
+        std::string name = "App Name";
+        std::string developer = "Developer Name";
+        int numRatings = 0;
+        float rating = 5.0f;
+        double sizeInGigabytes = 0;
 
-        void updateToLatestVersion(double versionNumber);
-        void uninstall(bool saveUserPreferences = false);
-        double installPackage(double packageSizeInGb);
+        void updateToLatestVersion(double versionNumber)
+        {
+            std::cout << "Updated " << name << " to version number " << versionNumber << std::endl;
+        }
+
+        void uninstall(bool saveUserPreferences = false)
+        {
+            if (saveUserPreferences)
+            {
+                std::cout << "Uninstalled " << name << " by " << developer << " and saved user preferences" << std::endl;
+            }
+            else
+            {
+                std::cout << "Uninstalled " << name << " by " << developer << " and DID NOT save user preferences" << std::endl;
+            }
+        }
+
+        double installPackage(double packageSizeInGb)
+        {
+            std::cout << "Installed app package for " << packageSizeInGb << "gb" << std::endl;
+            sizeInGigabytes += packageSizeInGb;
+            std::cout << "New total pacakge size is " << sizeInGigabytes << "gb" << std::endl;
+            return sizeInGigabytes;
+        }
     };
 
-    void turnOnOff(int currentPowerStatus = 0);
-    bool browseInternet(std::string websiteUrl);
-    void downloadApp(App app, double hardDriveSpaceAvailable = 359.32);
+    void turnOnOff(int currentPowerStatus = 0)
+    {
+        if (currentPowerStatus == 0)
+        {
+            currentPowerStatus = 1;
+            std::cout << "Current power status is: " << currentPowerStatus << std::endl;
+        }
+        else
+        {
+            currentPowerStatus = 0;
+            std::cout << "Current power status is: " << currentPowerStatus << std::endl;
+        }
+    }
 
-    // App favoriteApp;
+    bool browseInternet(std::string websiteUrl)
+    {
+        if (websiteUrl != "")
+        {
+            std::cout << "Connected to " << websiteUrl << " and now browsing!" << std::endl;
+            return true;
+        }
+        std::cout << "Could not connect to " << websiteUrl << std::endl;
+        return false;
+    }
+
+    void downloadApp(App app, double hardDriveSpaceAvailable = 359.32)
+    {
+        if (hardDriveSpaceAvailable > app.sizeInGigabytes)
+        {
+            std::cout << "Downloading app: " << app.name << std::endl;
+        }
+        else
+        {
+            std::cout << "Not enough space to download app" << std::endl;
+        }
+    }
+
 };
 
 MacbookPro::MacbookPro()
 {
     std::cout << "created a MacbookPro" << std::endl;
-    numKeys = 78;
-    systemLanguage = "EN";
-    screenSizeInInches = 13.3f;
-    percentageBatteryRemaining = 59;
-    numUsbPorts = 2;
 }
 
 MacbookPro::App::App()
 {
     std::cout << "created a MacbookPro::App" << std::endl;
-    name = "Awesome App";
-    developer = "Awesome Devs LLC";
-    numRatings = 309;
-    rating = 4.9f;
-    sizeInGigabytes = 13.9;
-}
-
-void MacbookPro::App::updateToLatestVersion(double versionNumber)
-{
-    std::cout << "Updated app to version number " << versionNumber << std::endl;
-}
-
-void MacbookPro::App::uninstall(bool saveUserPreferences)
-{
-    std::cout << (saveUserPreferences ? "Uninstalled app and saved user preferences" : "Uninstalled app and did not save user preferences") << std::endl;
-}
-
-double MacbookPro::App::installPackage(double packageSizeInGb)
-{
-    std::cout << "Installed app package for " << packageSizeInGb << "gb" << std::endl;
-    sizeInGigabytes += packageSizeInGb;
-    std::cout << "New total pacakge size is " << sizeInGigabytes << "gb" << std::endl;
-    return sizeInGigabytes;
-}
-
-void MacbookPro::turnOnOff(int currentPowerStatus)
-{
-    if (currentPowerStatus == 0)
-    {
-        currentPowerStatus = 1;
-        std::cout << "Current power status is: " << currentPowerStatus << std::endl;
-    }
-    else
-    {
-        currentPowerStatus = 0;
-        std::cout << "Current power status is: " << currentPowerStatus << std::endl;
-    }
-}
-
-bool MacbookPro::browseInternet(std::string websiteUrl)
-{
-    if (websiteUrl != "")
-    {
-        std::cout << "Connected to website and now browsing!" << std::endl;
-        return true;
-    }
-    std::cout << "Could not connect to website" << std::endl;
-    return false;
-}
-
-void MacbookPro::downloadApp(MacbookPro::App app, double hardDriveSpaceAvailable)
-{
-    if (hardDriveSpaceAvailable > app.sizeInGigabytes)
-    {
-        std::cout << "Downloading app: " << app.name << std::endl;
-    }
-    else
-    {
-        std::cout << "Not enough space to download app" << std::endl;
-    }
 }
 
 
@@ -240,46 +211,38 @@ struct Iphone
 {
     Iphone();
 
-    float diagScreenSizeInches;
-    std::string model;
-    float monthlyCallMinsUsed;
-    double minSpentBrowsingInstagramToday;
-    int numSideButtons;
+    float diagScreenSizeInches = 5.85f;
+    std::string model = "iPhone 11 Pro";
+    float monthlyCallMinsUsed = 0.0f;
+    double minSpentBrowsingInstagramToday = 0.0;
+    int numSideButtons = 3;
 
-    float makeCall(std::string nameOfCallee);
-    void sendText(std::string message);
-    void setTimer(double duration);
+    float makeCall(std::string nameOfCallee)
+    {
+        if (nameOfCallee != "Bob Smith")
+        {
+            std::cout << "Calling " << nameOfCallee << " for a short chat." << std::endl;
+            monthlyCallMinsUsed += 20.0f;
+            return monthlyCallMinsUsed;
+        }
+        std::cout << "I don't feel like talking to Bob right now." << std::endl;
+        return monthlyCallMinsUsed;
+    }
+
+    void sendText(std::string message)
+    {
+        std::cout << "Sending message: " << message << std::endl;
+    }
+
+    void setTimer(double duration)
+    {
+        std::cout << "Set timer for " << duration << " mins." << std::endl;
+    }
 };
 
 Iphone::Iphone()
 {
     std::cout << "created a Iphone" << std::endl;
-    diagScreenSizeInches = 5.85f;
-    model = "iPhone 11 Pro";
-    monthlyCallMinsUsed = 108.3f;
-    minSpentBrowsingInstagramToday = 34.5;
-    numSideButtons = 3;
-}
-
-float Iphone::makeCall(std::string nameOfCallee)
-{
-    if (nameOfCallee != "Bob Smith")
-    {
-        std::cout << "Calling " << nameOfCallee << " for a short chat." << std::endl;
-        return 20.f;
-    }
-    std::cout << "I don't feel like talking to Bob right now." << std::endl;
-    return 0.f;
-}
-
-void Iphone::sendText(std::string message)
-{
-    std::cout << "Sending message: " << message << std::endl;
-}
-
-void Iphone::setTimer(double duration)
-{
-    std::cout << "Set timer for " << duration << " mins." << std::endl;
 }
 
 
@@ -293,63 +256,60 @@ struct Corgi
     std::string eyeColor;
     int age;
 
-    void bark(float loudness);
-    void begForTreats(int numOfTreats, float durationOfBeggingInMin = 248.2f);
-    void playCatch(unsigned int numTimesThrowBall);
+    void bark(float loudness)
+    {
+        if (loudness > 100.f)
+        {
+            std::cout << "Corgi barked REALLY loud!" << std::endl;
+            std::cout << "That's " << loudness - avgBarkLoudnessDb << " dB louder than average!" << std::endl;
+        }
+        else if (loudness > 50.f)
+        {
+            std::cout << "Corgi barked loud" << std::endl;
+        }
+        else
+        {
+            std::cout << "I barely heard anything" << std::endl;
+        }
+    }
+
+    void begForTreats(int numOfTreats, float durationOfBeggingInMin = 248.2f)
+    {
+        if (numOfTreats > 3 && durationOfBeggingInMin > 300.f)
+        {
+            std::cout << "Corgi got lots of treats" << std::endl;
+        }
+        else
+        {
+            std::cout << "No treats for the corgi :(" << std::endl;
+        }
+    }
+
+    void playCatch(unsigned int numTimesThrowBall)
+    {
+        if (numTimesThrowBall > 25)
+        {
+            std::cout << "Corgi is tired..." << std::endl;
+        }
+        else if (numTimesThrowBall > 5)
+        {
+            std::cout << "Corgi loves to play catch!" << std::endl;
+        }
+        else
+        {
+            std::cout << "Corgi is bored and wants to play more" << std::endl;
+        }
+    }
 };
 
-Corgi::Corgi()
+Corgi::Corgi() :
+numLegs(4),
+weightInPounds(27.2f),
+avgBarkLoudnessDb(82.1f),
+eyeColor("Dark brown"),
+age(7)
 {
     std::cout << "created a Corgi" << std::endl;
-    numLegs = 4;
-    weightInPounds = 27.2f;
-    avgBarkLoudnessDb = 82.1f;
-    eyeColor = "Dark brown";
-    age = 7;
-}
-
-void Corgi::bark(float loudness)
-{
-    if (loudness > 50.f)
-    {
-        std::cout << "Corgi barked REALLY loud!" << std::endl;
-    }
-    else if (loudness > 10.f)
-    {
-        std::cout << "Corgi barked loud" << std::endl;
-    }
-    else
-    {
-        std::cout << "I barely heard anything" << std::endl;
-    }
-}
-
-void Corgi::begForTreats(int numOfTreats, float durationOfBeggingInMin)
-{
-    if (numOfTreats > 3 && durationOfBeggingInMin > 300.f)
-    {
-        std::cout << "Corgi got lots of treats" << std::endl;
-    }
-    else
-    {
-        std::cout << "No treats for the corgi :(" << std::endl;
-    }
-}
-
-void Corgi::playCatch(unsigned int numTimesThrowBall)
-{
-    if (numTimesThrowBall > 25)
-    {
-        std::cout << "Corgi is tired..." << std::endl;
-    }
-    else if (numTimesThrowBall > 5)
-    {
-        std::cout << "Corgi loves to play catch!" << std::endl;
-    }
-    else
-    {
-        std::cout << "Corgi is bored and wants to play more" << std::endl;
-    }
 }
 
 
@@ -363,47 +323,43 @@ struct VRCamera
     std::string colorMode;
     float aperture;
 
-    void scanRoom(bool playerIsStanding = true);
-    bool detectObstacles(bool hasAlreadyScannedRoom);
-    void togglePasshroughView(bool isCurrentlyPassthroughView = false);
+    void scanRoom(bool playerIsStanding = true)
+    {
+        if (playerIsStanding)
+        {
+            std::cout << "Scanning room" << std::endl;
+        }
+        else
+        {
+            std::cout << "Please stand to scan room" << std::endl;
+        }
+    }
+
+    bool detectObstacles(bool hasAlreadyScannedRoom)
+    {
+        if (hasAlreadyScannedRoom)
+        {
+            std::cout << "Obstacle detected" << std::endl;
+            return true;
+        }
+        std::cout << "Please scan room first" << std::endl;
+        return false;
+    }
+
+    void togglePasshroughView(bool isCurrentlyPassthroughView = false)
+    {
+        isCurrentlyPassthroughView = !isCurrentlyPassthroughView;
+    }
 };
 
-VRCamera::VRCamera()
+VRCamera::VRCamera() :
+megapixels(3.5f),
+diameterInMm(15.0f),
+resolution("1832×1920"),
+colorMode("Full color"),
+aperture(4.0f)
 {
     std::cout << "created a VRCamera" << std::endl;
-    megapixels = 3.5f;
-    diameterInMm = 15.f;
-    resolution = "1832×1920";
-    colorMode = "Full color";
-    aperture = 4.f;
-}
-
-void VRCamera::scanRoom(bool playerIsStanding)
-{
-    if (playerIsStanding)
-    {
-        std::cout << "Scanning room" << std::endl;
-    }
-    else
-    {
-        std::cout << "Please stand to scan room" << std::endl;
-    }
-}
-
-bool VRCamera::detectObstacles(bool hasAlreadyScannedRoom)
-{
-    if (hasAlreadyScannedRoom)
-    {
-        std::cout << "Obstacle detected" << std::endl;
-        return true;
-    }
-    std::cout << "Please scan room first" << std::endl;
-    return false;
-}
-
-void VRCamera::togglePasshroughView(bool isCurrentlyPassthroughView)
-{
-    isCurrentlyPassthroughView = !isCurrentlyPassthroughView;
 }
 
 
@@ -417,45 +373,42 @@ struct VRLenses
     float widthInCm;
     float heightInCm;
 
-    void viewGame(std::string game);
-    float adjustLensDistance(float currentDistance, float amountToAdjust);
-    void focusOnScreen(bool currentlyInFocus);
+    void viewGame(std::string game)
+    {
+        std::cout << "Currently viewing " << game << std::endl;
+    }
+
+    float adjustLensDistance(float currentDistance, float amountToAdjust)
+    {
+        std::cout << "Current distance is " << currentDistance << std::endl;
+        std::cout << "Distance adjusted by " << amountToAdjust << std::endl;
+        std::cout << "New distance " << currentDistance - amountToAdjust << std::endl;
+
+        return currentDistance - amountToAdjust;
+    }
+
+    void focusOnScreen(bool currentlyInFocus)
+    {
+        if (currentlyInFocus)
+        {
+            std::cout << "Focused!" << std::endl;
+            std::cout << "You are using a lens prescription with strength " << prescriptionStrength << " with " << typeOfCoating << ", which means you can see clearly!" << std::endl;
+        }
+        else
+        {
+            std::cout << "Need to focus" << std::endl;
+        }
+    }
 };
 
-VRLenses::VRLenses()
+VRLenses::VRLenses() :
+typeOfCoating("Anti-reflective"),
+lensDistanceInMm(63.0f),
+prescriptionStrength(6.25f),
+widthInCm(5.07f),
+heightInCm(4.89f)
 {
     std::cout << "created a VRLenses" << std::endl;
-    typeOfCoating = "Anti-reflective";
-    lensDistanceInMm = 63.f;
-    prescriptionStrength = 6.25f;
-    widthInCm = 5.07f;
-    heightInCm = 4.89f;
-}
-
-void VRLenses::viewGame(std::string game)
-{
-    std::cout << "Currently viewing " << game << std::endl;
-}
-
-float VRLenses::adjustLensDistance(float currentDistance, float amountToAdjust)
-{
-    std::cout << "Current distance is " << currentDistance << std::endl;
-    std::cout << "Distance adjusted by " << amountToAdjust << std::endl;
-    std::cout << "New distance " << currentDistance - amountToAdjust << std::endl;
-
-    return currentDistance - amountToAdjust;
-}
-
-void VRLenses::focusOnScreen(bool currentlyInFocus)
-{
-    if (currentlyInFocus)
-    {
-        std::cout << "Focused!" << std::endl;
-    }
-    else
-    {
-        std::cout << "Need to focus" << std::endl;
-    }
 }
 
 
@@ -463,46 +416,37 @@ struct VRControllers
 {
     VRControllers();
 
-    int numButtons;
-    float wristStrapLengthInCm;
-    float triggerPress;
-    float weightInGrams;
-    float lengthInCm;
+    int numButtons = 4;
+    float wristStrapLengthInCm = 12.7f;
+    float triggerPress = 0.0f;
+    float weightInGrams = 126.1f;
+    float lengthInCm = 12.0f;
 
-    void pressButton(std::string button);
-    bool trackingWorldSpace(std::string appName, bool gameIsRunning = false);
-    void rumble(float rumbleIntensity);
+    void pressButton(std::string button)
+    {
+        std::cout << "Button pressed: " << button << std::endl;
+    }
+
+    bool trackingWorldSpace(std::string appName, bool gameIsRunning = false)
+    {
+        if (gameIsRunning)
+        {
+            std::cout << "Tracking world space for " << appName << std::endl;
+            return true;
+        }
+        std::cout << "Cannot track world space when game is not running." << std::endl;
+        return false;
+    }
+
+    void rumble(float rumbleIntensity)
+    {
+        std::cout << "Rumbling controllers at intensity level: " << rumbleIntensity << std::endl;
+    }
  };
 
 VRControllers::VRControllers()
 {
     std::cout << "created a VRControllers" << std::endl;
-    numButtons = 4;
-    wristStrapLengthInCm = 12.7f;
-    triggerPress = 0.f;
-    weightInGrams = 126.1f;
-    lengthInCm = 12.f;
-}
-
-void VRControllers::pressButton(std::string button)
-{
-    std::cout << "Button pressed: " << button << std::endl;
-}
-
-bool VRControllers::trackingWorldSpace(std::string appName, bool gameIsRunning)
-{
-    if (gameIsRunning)
-    {
-        std::cout << "Tracking world space for " << appName << std::endl;
-        return true;
-    }
-    std::cout << "Cannot track world space when game is not running." << std::endl;
-    return false;
-}
-
-void VRControllers::rumble(float rumbleIntensity)
-{
-    std::cout << "Rumbling controllers at intensity level: " << rumbleIntensity << std::endl;
 }
 
 
@@ -516,42 +460,40 @@ struct VRMemory
     std::string typeOfMemory;
     std::string brandOfMemory;
 
-    bool saveGameProgress(std::string currentCheckpoint, double memoryNeeded);
-    void removeGameData(std::string gameName);
-    void newGameDownload(double memoryNeeded);
+    bool saveGameProgress(std::string currentCheckpoint, double memoryNeeded)
+    {
+        if (memoryNeeded > 0 && memoryNeeded < memoryAvailableInGb)
+        {
+            std::cout << "Saving game at " << currentCheckpoint << std::endl;
+            std::cout << "Current memory available is " << memoryAvailableInGb << ". Amount available after saving is " << memoryAvailableInGb - memoryNeeded << std::endl;
+            return true;
+        }
+        std::cout << "Cannot save game progress. Need more memory. Consider upgrading to a newer model of your current brand: " << brandOfMemory << std::endl;
+        return false;
+    }
+
+    void removeGameData(std::string gameName)
+    {
+        if (gameName != "")
+        {
+            std::cout << "Removing " << gameName << " from memory" << std::endl;
+        }
+    }
+
+    void newGameDownload(double memoryNeeded)
+    {
+       std::cout << "Taking up " << memoryNeeded << " to download game." << std::endl;
+    }
 };
 
-VRMemory::VRMemory()
+VRMemory::VRMemory() :
+totalMemoryInGb(6),
+memoryUsedInGb(1.432),
+memoryAvailableInGb(4.568),
+typeOfMemory("DDR4"),
+brandOfMemory("Qualcomm")
 {
     std::cout << "created a VRMemory" << std::endl;
-    totalMemoryInGb = 6;
-    memoryUsedInGb = 1.432;
-    memoryAvailableInGb = 4.568;
-    typeOfMemory = "DDR4";
-    brandOfMemory = "Qualcomm";
-}
-
-bool VRMemory::saveGameProgress(std::string currentCheckpoint, double memoryNeeded)
-{
-    if (memoryNeeded > 0)
-    {
-        std::cout << "Saving game at " << currentCheckpoint << std::endl;
-        return true;
-    }
-    return false;
-}
-
-void VRMemory::removeGameData(std::string gameName)
-{
-    if (gameName != "")
-    {
-        std::cout << "Removing " << gameName << " from memory" << std::endl;
-    }
-}
-
-void VRMemory::newGameDownload(double memoryNeeded)
-{
-    std::cout << "Taking up " << memoryNeeded << " to download game." << std::endl;
 }
 
 
@@ -559,49 +501,40 @@ struct VRHeadStrap
 {
     VRHeadStrap();
 
-    float circumference;
-    float lengthOfTopStrap;
-    std::string typeOfMaterial;
-    std::string colorOfStrap;
-    int numVelcroPads;
+    float circumference = 53.2f;
+    float lengthOfTopStrap = 295.5f;
+    std::string typeOfMaterial = "Velcro";
+    std::string colorOfStrap = "Gray";
+    int numVelcroPads = 3;
 
-    void tighten(float amountToTighten);
-    void loosten(float amountToLoosten);
-    void replaceStrap(std::string brandName);
+    void tighten(float amountToTighten)
+    {
+        if (amountToTighten < 100.f && amountToTighten > 0.f)
+        {
+            std::cout << "Tightening strap by " << amountToTighten << std::endl;
+        }
+    }
+
+    void loosten(float amountToLoosten)
+    {
+        if (amountToLoosten < 100.f && amountToLoosten > 0.f)
+        {
+            std::cout << "Loostening strap by " << amountToLoosten << std::endl;
+        }
+    }
+
+    void replaceStrap(std::string brandName)
+    {
+        if (brandName != "Bad brand name")
+        {
+            std::cout << "Replacing strap with high quality strap from " << brandName << std::endl;
+        }
+    }
 };
 
 VRHeadStrap::VRHeadStrap()
 {
     std::cout << "created a VRHeadStrap" << std::endl;
-    circumference = 53.2f;
-    lengthOfTopStrap = 295.5f;
-    typeOfMaterial = "Velcro";
-    colorOfStrap = "Gray";
-    numVelcroPads = 3;
-}
-
-void VRHeadStrap::tighten(float amountToTighten)
-{
-    if (amountToTighten < 100.f && amountToTighten > 0.f)
-    {
-        std::cout << "Tightening strap by " << amountToTighten << std::endl;
-    }
-}
-
-void VRHeadStrap::loosten(float amountToLoosten)
-{
-    if (amountToLoosten < 100.f && amountToLoosten > 0.f)
-    {
-        std::cout << "Loostening strap by " << amountToLoosten << std::endl;
-    }
-}
-
-void VRHeadStrap::replaceStrap(std::string brandName)
-{
-    if (brandName != "Bad brand name")
-    {
-        std::cout << "Replacing strap with high quality strap from " << brandName << std::endl;
-    }
 }
 
 
@@ -618,38 +551,34 @@ struct VRHeadset
     VRMemory memory;
     VRHeadStrap strap;
 
-    float playGame(std::string gameName, unsigned int numPlayers = 2);
-    void scanRoom(float roomWidthFeet = 12.4f, float roomHeightFeet = 14.3f);
-    void trackHeadMovement(double acceleration, float xCoord, float yCoord, float zCoord);
+    float playGame(std::string gameName, unsigned int numPlayers = 2)
+    {
+        if (numPlayers == 1)
+        {
+            std::cout << "Playing " << gameName << " by myself for a little while." << std::endl;
+            return 20.5f;
+        }
+        else if (numPlayers > 1)
+        {
+            std::cout << "Playing " << gameName << " with friends for a long time!" << std::endl;
+            return 100.f;
+        }
+        std::cout << "Not playing right now after all." << std::endl;
+        return 0.f;
+    }
+
+    void scanRoom(float roomWidthFeet = 12.4f, float roomHeightFeet = 14.3f)
+    {
+        std::cout << "Scanning room..." << std::endl;
+        std::cout << "Room has a width of " << roomWidthFeet << " and a height of " << roomHeightFeet << std::endl;
+    }
+
+    void trackHeadMovement(double acceleration, float xCoord, float yCoord, float zCoord)
+    {
+        std::cout << "Tracking head movement..." << std::endl;
+        std::cout << "Current stats: Acceleration - " << acceleration << "\n" << "x coordinate - " << xCoord << "\n" << "y coordinate - " << yCoord << "\n" << "z coordinate - "  << zCoord << std::endl;
+    }
 };
-
-float VRHeadset::playGame(std::string gameName, unsigned int numPlayers)
-{
-    if (numPlayers == 1)
-    {
-        std::cout << "Playing " << gameName << " by myself for a little while." << std::endl;
-        return 20.5f;
-    }
-    else if (numPlayers > 1)
-    {
-        std::cout << "Playing " << gameName << " with friends for a long time!" << std::endl;
-        return 100.f;
-    }
-    std::cout << "Not playing right now after all." << std::endl;
-    return 0.f;
-}
-
-void VRHeadset::scanRoom(float roomWidthFeet, float roomHeightFeet)
-{
-    std::cout << "Scanning room..." << std::endl;
-    std::cout << "Room has a width of " << roomWidthFeet << " and a height of " << roomHeightFeet << std::endl;
-}
-
-void VRHeadset::trackHeadMovement(double acceleration, float xCoord, float yCoord, float zCoord)
-{
-    std::cout << "Tracking head movement..." << std::endl;
-    std::cout << "Current stats: Acceleration - " << acceleration << "\n" << "x coordinate - " << xCoord << "\n" << "y coordinate - " << yCoord << "\n" << "z coordinate - "  << zCoord << std::endl;
-}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
